@@ -1,9 +1,9 @@
 component {
 	
-	property name="installService" inject="model:installService@Solitary";
+	property name="installService" inject="model:installService@INCLMSsecurity";
 
 	// Module Properties
-	this.title 				= "Solitary";
+	this.title 				= "INCLMSsecurity";
 	this.author 			= "Daniel Vega";
 	this.webURL 			= "http://www.danvega.org";
 	this.description 		= "A Security Module";
@@ -45,8 +45,8 @@ component {
 		
 		// SES Routes
 		routes = [
-			{pattern="/", handler="security",action="index"},	
-			{pattern="/docs", handler="docs",action="index"},	
+			{pattern="/", handler="docs",action="index"},	
+			//{pattern="/docs", handler="docs",action="index"},
 			{pattern="/login", handler="security",action="login"},		
 			{pattern="/doLogin", handler="security",action="doLogin"},		
 			{pattern="/logout", handler="security",action="logout"},
@@ -66,7 +66,7 @@ component {
 			{pattern="/roles/save", handler="roles",action="save"},
 			{pattern="/roles/remove/:id", handler="roles",action="remove"},
 			{pattern="/sessiontracking/current", handler="sessiontracking",action="current"},		
-			{pattern="/sessiontracking/active", handler="sessiontracking",action="active"}				
+			{pattern="/sessiontracking/active", handler="sessiontracking",action="active"}
 		];
 		
 		// Custom Declared Points
@@ -82,25 +82,25 @@ component {
 			 		rulesSource="xml",
 			 		rulesFile="#modulePath#/config/securityRules.xml.cfm",
 			 		preEventSecurity="true",
-			 		validatorModel="securityService@Solitary"
+			 		validatorModel="securityService@INCLMSsecurity"
 			 	}
 			 }	
 		];
 
 		// wirebox mappings
-		binder.map("SecurityService@Solitary")
+		binder.map("SecurityService@INCLMSsecurity")
 			.to("#moduleMapping#.model.security.SecurityService")
 			.asSingleton();
 			
-		binder.map("UserService@Solitary")
+		binder.map("UserService@INCLMSsecurity")
 			.to("#moduleMapping#.model.users.UserService")
 			.asSingleton();	
 		
-		binder.map("RoleService@Solitary")
+		binder.map("RoleService@INCLMSsecurity")
 			.to("#moduleMapping#.model.roles.RoleService")
 			.asSingleton();
 			
-		binder.map("InstallService@Solitary")
+		binder.map("InstallService@INCLMSsecurity")
 			.to("#moduleMapping#.model.install.Install")
 			.asSingleton();
 	}
@@ -110,7 +110,7 @@ component {
 	 */
 	public void function onLoad(){
 		var setupPath = getDirectoryFromPath(getCurrentTemplatePath()) & "config\setup.xml";
-		var installService = binder.getInjector().getInstance("InstallService@Solitary");
+		var installService = binder.getInjector().getInstance("InstallService@INCLMSsecurity");
 		
 		// if a file named setup.xml exists in the config folder lets install some default data	
 		if( fileExists(setupPath) ){

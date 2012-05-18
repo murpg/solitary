@@ -1,6 +1,6 @@
 component{
 
-	property name="roleService" inject="model:roleService@Solitary";
+	property name="roleService" inject="model:roleService@INCLMSsecurity";
 
 	public void function index(event){
 		setNextEvent("security/roles/list");
@@ -16,6 +16,19 @@ component{
 		}
 	}		public void function save(event){
 		var rc = event.getCollection();
+		
+		var myConstraints = {
+		name = { required=true, size=6-10}
+	    };
+
+	    prc.role = populateModel( roleService.get(id=rc.roleid) );
+	    prc.validationResults = validateModel(target=prc.role,constraints=myConstraints);
+	    
+		if( prc.validationResults.hasErrors() ){
+		getPlugin("MessageBox").setMessage(type="error",messageArray=prc.validationResults.getAllErrors());
+		setNextEvent(event='INCLMSsecurity:roles.edit',persistStruct=rc);
+		}
+		
 		var role = roleService.get( event.getValue("roleid","") );
 		
 		if( !isNull(role) ){
@@ -24,6 +37,7 @@ component{
 			getPlugin("messagebox").setMessage("info","The role #rc.name# was created successfully.");
 			setNextEvent("security.roles.list");
 		} else {
+			
 			roleNotFound();			
 		}
 	}		public void function remove(event){

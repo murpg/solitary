@@ -1,8 +1,8 @@
-import solitary.model.users.User;
+import INCLMSsecurity.model.users.User;
 
 component accessors="true" singleton="true" {
 	
-	property name="userService" inject="model:userService@solitary";
+	property name="userService" inject="model:userService@INCLMSsecurity";
 	property name="sessionStorage" inject="coldbox:plugin:SessionStorage";
 	property name="mailService" inject="coldbox:plugin:MailService";
 	property name="renderer" inject="coldbox:plugin:Renderer";
@@ -71,7 +71,7 @@ component accessors="true" singleton="true" {
 	}
 	
 	public void function sendForgotPasswordNotification(required User user){
-		var settings = configBean.getKey("modules").solitary.settings;
+		var settings = configBean.getKey("modules").INCLMSsecurity.settings;
 		var baseURL = len(configBean.getKey('sesBaseURL')) ? configBean.getKey('sesBaseURL') : configBean.getKey('htmlBaseURL');
 		rc.emailView = 'notification/forgotPasswordNotification';
 		
@@ -94,7 +94,7 @@ component accessors="true" singleton="true" {
 		});
 		
 		// Add HTML email
-		local.email.addMailPart(charset='utf-8',type='text/html',body=renderer.renderView(view=rc.emailView,module="solitary"));
+		local.email.addMailPart(charset='utf-8',type='text/html',body=renderer.renderView(view=rc.emailView,module="INCLMSsecurity"));
 		
 		// Send the email. MailResult is a boolean.
 		local.mailResult = mailService.send(local.Email);

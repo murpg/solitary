@@ -1,6 +1,6 @@
 ﻿<cfoutput>
 	
-	<h1>Solitary Documentation</h1>
+	<h1>INCLMSsecurity Documentation</h1>
 
 	<ul>
 		<li><a href="##name">About</a></li>
@@ -14,14 +14,14 @@
 	
 	<h2><a name="about">About</a></h2>
 	<p>Building a new application that requires a security in framework can be a very tedious task. A security framework usually starts off as a simple requirement and ends up growing into a project all on its own. You first decide to either copy some code from a previous project or start from scratch. What if there was a way to drop a folder into your project and have a security frameowrk in place instantly? Well now there is!</p>
-	<p>When modules came out for ColdBox I thought this would be a great first project to work. Solitary is a ColdBox module that handles roles based security for your application. When you drop the module into your project it will instantly lock down your entire application and create the necessary tables in your database. Under the hood it uses the ColdBox interceptor so its fully customizable.</p>
+	<p>When modules came out for ColdBox I thought this would be a great first project to work. INCLMSsecurity is a ColdBox module that handles roles based security for your application. When you drop the module into your project it will instantly lock down your entire application and create the necessary tables in your database. Under the hood it uses the ColdBox interceptor so its fully customizable.</p>
 	
 	<h2><a name="install">Installation</a></h2>
 	<ol>
-	<li>Drop the solitary folder into your modules folder {project_root}/modules/</li>
+	<li>Drop the INCLMSsecurity folder into your modules folder {project_root}/modules/</li>
 	<li>Add a mapping to {project_root}/Application.cfc
 		<br/>
-		&nbsp;&nbsp;&nbsp;&nbsp;this.mappings['/solitary'] = COLDBOX_APP_ROOT_PATH & "/modules/solitary";
+		&nbsp;&nbsp;&nbsp;&nbsp;this.mappings['/INCLMSsecurity'] = COLDBOX_APP_ROOT_PATH & "/modules/INCLMSsecurity";
 	</li>
 	<li>
 		Update {project_root}/Application.cfc to enable ORM<br/><br/>

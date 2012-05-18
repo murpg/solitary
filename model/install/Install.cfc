@@ -1,10 +1,10 @@
 ﻿/**
- * I handle installation of default data for Solitary
+ * I handle installation of default data for INCLMSsecurity
  */
 component accessors="true" {
 
-	property name="userService" inject="model:userService@Solitary";
-	property name="roleService" inject="model:roleService@Solitary";
+	property name="userService" inject="model:userService@INCLMSsecurity";
+	property name="roleService" inject="model:roleService@INCLMSsecurity";
 	property name="log" inject="logbox:root";
 	property name="configPath" type="string";
 	property name="configXML" type="string";
@@ -19,7 +19,7 @@ component accessors="true" {
 		try {
 			setConfigXML( xmlParse(f) );
 		} catch(any e){
-			log.error("There was an error parsing the solitary xml config file.");
+			log.error("There was an error parsing the INCLMSsecurity xml config file.");
 		}
 		
 		// we only want to add this data if there are no records
@@ -32,7 +32,7 @@ component accessors="true" {
 	}
 	
 	private void function setupRoles(){
-		var roles = xmlSearch(getConfigXML(),"/solitary/roles/role");
+		var roles = xmlSearch(getConfigXML(),"/INCLMSsecurity/roles/role");
 		
 		for(var role in roles){
 			var r = roleService.new();
@@ -44,7 +44,7 @@ component accessors="true" {
 	}
 	
 	private void function setupUsers(){
-		var users = xmlSearch(getConfigXML(),"/solitary/users/user");
+		var users = xmlSearch(getConfigXML(),"/INCLMSsecurity/users/user");
 		
 		for(var user in users){
 			var u = userService.new();

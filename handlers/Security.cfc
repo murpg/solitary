@@ -1,7 +1,7 @@
 component accessors="true" {
 	
-	property name="securityService" inject="model:securityService@Solitary";
-	property name="userService" inject="model:userService@Solitary";
+	property name="securityService" inject="model:securityService@INCLMSsecurity";
+	property name="userService" inject="model:userService@INCLMSsecurity";
 	property name="cookieStorage" inject="coldbox:plugin:CookieStorage";
 	property name="defaultEvent" inject="coldbox:setting:defaultEvent";
 		

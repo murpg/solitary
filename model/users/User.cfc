@@ -1,4 +1,4 @@
-component persistent="true" extends="solitary.model.BaseEntity" table="users"{
+component persistent="true" extends="INCLMSsecurity.model.BaseEntity" table="users"{
 	
 	property name="userid" column="user_id" fieldtype="id" generator="uuid" setter="false";
 	property name="firstName";
@@ -11,15 +11,15 @@ component persistent="true" extends="solitary.model.BaseEntity" table="users"{
 	property name="usernamePasswordHash" column="uph" type="string";
 	property name="emailPasswordHash" column="eph" type="string";
 	property name="passwordHasReset" type="boolean";  
-	property name="roles" fieldtype="many-to-many" cfc="solitary.model.roles.Role" singularname="role" fkcolumn="user_id" inversejoincolumn="role_id" linktable="users_roles";   
+	property name="roles" fieldtype="many-to-many" cfc="INCLMSsecurity.model.roles.Role" singularname="role" fkcolumn="user_id" inversejoincolumn="role_id" linktable="users_roles";   
 	
-	this.constraints = [
-		{property="firstName",blank=false},
-		{property="lastName",blank=false},
-		{property="email",email=true,unique=true,context="create"},
-		{property="userName",size="6..20",unique=true,context="create"},
-		{property="password",size="6..20",context="create"}
-	];
+	this.constraints = {
+		firstName = { required = true },
+		lastName = { required = true},
+		email = {required=true, type="email"},
+		username = {required=true, size=6-20},
+		password = {required=true, size=6-20}
+	};
 	
 	public User function init(){
 		roles = [];

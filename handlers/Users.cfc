@@ -1,7 +1,7 @@
 ﻿component accessors="true" {
 
-	property name="userService"	inject="model:userService@solitary";
-	property name="roleService"	inject="model:roleService@solitary";
+	property name="userService"	inject="model:userService@INCLMSsecurity";
+	property name="roleService"	inject="model:roleService@INCLMSsecurity";
 	property name="sessionStorage"	inject="coldbox:plugin:SessionStorage";
 
 	function preHandler(event,action){
@@ -22,13 +22,15 @@
 		} else {
 			rc.users = userService.list(sortOrder="lastName desc",asQuery=false);
 		}
-		
+		//rc.result = ORMExecuteQuery('from User');
+		rc.artistQuery = EntityToQuery(ORMExecuteQuery('from User'));
 	}
 
 	public void function edit(event){
 		var rc = event.getCollection();
 		event.paramValue("id","");
 		rc.user  = event.getValue("user",userService.get( rc.id ));
+		populateModel( rc.user );
 		rc.roles = roleService.list(sortOrder="name",asQuery=false);
 	}	
 
@@ -36,6 +38,13 @@
 		var rc = event.getCollection();		
 		var roles = [];
 		rc.user = populateModel( userService.get(id=rc.userID) );
+		
+		prc.validationResults = validateModel( rc.user );
+		
+		if( prc.validationResults.hasErrors() ){
+		getPlugin("MessageBox").setMessage(type="error",messageArray=prc.validationResults.getAllErrors());
+		setNextEvent(event='INCLMSsecurity:users.edit',persistStruct=rc);
+		}
 		
 		event.paramValue("roles","");
 		

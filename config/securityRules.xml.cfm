@@ -16,7 +16,7 @@ that can be found in an event.
 -->
 <rules>
     <rule>
-        <whitelist>solitary:security\..*,docs\..*</whitelist>
+        <whitelist>INCLMSsecurity:security\..*,docs\..*</whitelist>
         <securelist>\..*</securelist>
         <roles>admin,author</roles>
         <permissions></permissions>

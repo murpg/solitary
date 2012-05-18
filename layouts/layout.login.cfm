@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Solitary Coldbox Module</title>
+	<title>INCLMSsecurity Coldbox Module</title>
 
     <link rel="stylesheet" href="#event.getModuleRoot()#/includes/css/blueprint/screen.css" type="text/css" media="screen, projection"> 
     <link rel="stylesheet" href="#event.getModuleRoot()#/includes/css/blueprint/print.css" type="text/css" media="print"> 
@@ -15,6 +15,7 @@
 <body id="action-#event.getCurrentAction()#">
 	
 	<div class="container">
+		<div align="center"><cf_showLoginLogout /></div>
 		#renderView()#
 	</div>
 		
