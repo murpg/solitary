@@ -37,14 +37,18 @@ INSTALL INSTRUCTIONS
 
 3.) Update {project_root}/Application.cfc to enable ORM
 	
-	this.ormEnabled = true;
-	this.datasource = "YOUR_DATASOURCE_HERE";
-	this.ormSettings = {
+	<cfscript>
+		this.ormEnabled = true;
+		this.datasource = "samplesecurity";
+		this.ormSettings = {
 		dbcreate = "update",
-		eventhandling = true,
+		logSQL = true,
+		eventHandling=true,
 		flushAtRequestEnd = false,
-		cfclocation = []
-	};
+		autoManageSession = false,
+		skipCFCWithError = true
+		};
+	</cfscript>
 
 --------------------------------------------------------------------------------------
 USAGE
