@@ -11,16 +11,13 @@
 		var rc = event.getCollection();
 		var app = application.getApplicationSettings().name;
 		var sessiontracker = createObject("java","coldfusion.runtime.SessionTracker");
-		
 		var sessionCollection = sessionTracker.getSessionCollection(app);
-
 		rc.activeSessions = [];
-		
-		for(var s in sessionCollection){
-			if(structKeyExists(sessionCollection['#s#'],'cbStorage')){
-			var user = sessionCollection['#s#'].cbStorage.user;
-			user['sessionKey'] = s; 			
-			arrayAppend(rc.activeSessions,user);
+			for(var s in sessionCollection){
+				if(structKeyExists(sessionCollection['#s#'],'cbStorage') and not structIsEmpty(sessionCollection['#s#'].cbStorage)){
+				var user = sessionCollection['#s#'].cbStorage.user;
+				user['sessionKey'] = s; 			
+				arrayAppend(rc.activeSessions,user);
 			}
 		}
 

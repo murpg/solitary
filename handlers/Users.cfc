@@ -23,7 +23,7 @@
 			rc.users = userService.list(sortOrder="lastName desc",asQuery=false);
 		}
 		//rc.result = ORMExecuteQuery('from User');
-		rc.artistQuery = EntityToQuery(ORMExecuteQuery("from User where username='gmurphy'"));
+		//rc.artistQuery = EntityToQuery(ORMExecuteQuery("from User where username='gmurphy'"));
 	}
 
 	public void function edit(event){
